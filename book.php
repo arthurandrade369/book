@@ -14,7 +14,7 @@ class Book implements Publication
     {
         echo "Livro: " . $this->getTitle() . "<br>";
         echo "Escrito por: " . $this->getAuthor() . "<br>";
-        echo "Total de paginas : " . $this->getTotalPages(). "<br>";
+        echo "Total de paginas : " . $this->getTotalPages() . "<br>";
         echo "Paginas lidas: " . $this->getActualPages() . "<br>";
     }
 
@@ -33,7 +33,7 @@ class Book implements Publication
         return $this->title;
     }
 
-    private function setTitle($title)
+    public function setTitle($title)
     {
         $this->title = $title;
     }
@@ -43,7 +43,7 @@ class Book implements Publication
         return $this->author;
     }
 
-    private function setAuthor($author)
+    public function setAuthor($author)
     {
         $this->author = $author;
     }
@@ -53,7 +53,7 @@ class Book implements Publication
         return $this->totalPages;
     }
 
-    private function setTotalPages($totalPages)
+    public function setTotalPages($totalPages)
     {
         $this->totalPages = $totalPages;
     }
@@ -78,12 +78,12 @@ class Book implements Publication
         $this->isOpen = $isOpen;
     }
 
-    private function getReader()
+    public function getReader()
     {
         return $this->reader;
     }
 
-    private function setReader($reader)
+    public function setReader($reader)
     {
         $this->reader = $reader;
     }
@@ -100,10 +100,15 @@ class Book implements Publication
 
     public function browse($pages)
     {
-        if ($this->setActualPages($this->getActualPages() + $pages) < $this->totalPages) {
-            $this->setActualPages($this->getActualPages() + $pages);
+        if ($this->getIsOpen()) {
+            if ($this->getActualPages() + $pages <= $this->getTotalPages()) {
+                $this->setActualPages($this->getActualPages() + $pages);
+            } else {
+                echo "Impossivel ler mais paginas que o total!<br>";
+                return 0;
+            }
         } else {
-            echo "Impossivel ler mais paginas que o total!";
+            echo "Abra o livro para iniciar a leitura!<br>";
         }
     }
 

@@ -17,32 +17,32 @@ class People
         $this->sex = $sex;
     }
 
-    private function getName(): self
+    public function getName(): self
     {
         return $this->name;
     }
 
-    private function setName($name): ?string
+    public function setName($name): ?string
     {
         return $this->name = $name;
     }
 
-    private function getAgee(): self
+    public function getAgee(): self
     {
         return $this->age;
     }
 
-    private function setAge($age): ?int
+    public function setAge($age): ?int
     {
         return $this->age = $age;
     }
 
-    private function getSex(): self
+    public function getSex(): self
     {
         return $this->sex;
     }
 
-    private function setSex($sex): ?string
+    public function setSex($sex): ?string
     {
         return $this->sex = $sex;
     }
