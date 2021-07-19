@@ -15,6 +15,7 @@ class Book implements Publication
         echo "Livro: " . $this->getTitle() . "<br>";
         echo "Escrito por: " . $this->getAuthor() . "<br>";
         echo "Total de paginas : " . $this->getTotalPages(). "<br>";
+        echo "Paginas lidas: " . $this->getActualPages() . "<br>";
     }
 
     function __construct($title, $author, $totalPages, $reader)
@@ -89,7 +90,7 @@ class Book implements Publication
 
     public function open()
     {
-        $this->isOpen = true;
+        $this->setIsOpen(true);
     }
 
     public function close()
