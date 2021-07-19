@@ -10,6 +10,13 @@ class People
         $this->idade++;
     }
 
+    function __construct($name, $age, $sex)
+    {
+        $this->name = $name;
+        $this->age = $age;
+        $this->sex = $sex;
+    }
+
     private function getName(): self
     {
         return $this->name;

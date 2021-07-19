@@ -12,8 +12,9 @@ class Book implements Publication
 
     public function details()
     {
-        echo $this->getTitle() . "<br>";
-        echo $this->getAuthor() . "<br>";
+        echo "Livro: " . $this->getTitle() . "<br>";
+        echo "Escrito por: " . $this->getAuthor() . "<br>";
+        echo "Total de paginas : " . $this->getTotalPages(). "<br>";
     }
 
     function __construct($title, $author, $totalPages, $reader)
@@ -22,7 +23,8 @@ class Book implements Publication
         $this->author = $author;
         $this->totalPages = $totalPages;
         $this->reader = $reader;
-        $this->actualPage = 1;
+        $this->actualPage = 0;
+        $this->isOpen = false;
     }
 
     private function getTitle()
@@ -97,7 +99,11 @@ class Book implements Publication
 
     public function browse($pages)
     {
-        $this->setActualPages($this->getActualPages() + $pages);
+        if ($this->setActualPages($this->getActualPages() + $pages) < $this->totalPages) {
+            $this->setActualPages($this->getActualPages() + $pages);
+        } else {
+            echo "Impossivel ler mais paginas que o total!";
+        }
     }
 
     public function nextPage()
